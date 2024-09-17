@@ -1,0 +1,180 @@
+Book REST API
+This project is a Spring Boot REST API for managing a collection of books.
+It allows users to retrieve, filter, and rate books. The API supports filtering by title, year, author, and rating.
+The application is containerized using Docker.
+
+Features
+# Retrieve a list of books.
+#Filter books by title, year, author, and rating.
+#Rate books (1-5 stars).
+#Mock data is stored in an embedded H2 database.
+#Containerized with Docker.
+
+Technologies
+Java: OpenJDK 21
+Spring Boot: A Java framework used for building RESTful APIs.
+Spring Data JPA: For data persistence.
+H2 Database: Embedded database for mock data.
+Gradle: For dependency management and building the application.
+Docker: For containerization.
+
+Prerequisites
+To run this project locally, ensure you have the following installed:
+
+Java: JDK 21 or newer
+Maven: For building the Spring Boot application
+Docker: For containerizing and running the application
+
+Here’s an updated, easy-to-copy version of the README:
+
+---
+
+
+## **Usage Instructions**
+- **Run Locally**: Use the following command to build and run the application locally:
+  ```bash
+  ./gradlew bootRun
+  ```
+- **Run with Docker**:
+  ```bash
+  docker build -t additionaltask .
+  docker run -p 8080:8080 additionaltask
+  ```
+
+---
+
+
+## **Testing**
+The application includes unit and integration tests for the API using `MockMvc`. To run the tests, use the following command:
+
+```bash
+./gradlew test
+```
+
+
+Here's a simple preparation for Postman testing for each of the endpoints:
+
+### 1. **Get All Books** (with optional filters)
+
+**Request:**
+- **Method:** `GET`
+- **URL:** `http://localhost:8080/api/books`
+- **Optional Query Parameters:**
+  - `title`: filter by book title
+  - `author`: filter by author
+  - `publicationYear`: filter by publication year
+  - `rating`: filter by rating
+
+**Example URL without filters:**
+```http
+http://localhost:8080/api/books
+```
+
+**Example URL with filters:**
+```http
+http://localhost:8080/api/books?title=The Great Gatsby&author=F. Scott Fitzgerald&publicationYear=1925&rating=4.5
+```
+
+---
+
+### 2. **Get Book by ID**
+
+**Request:**
+- **Method:** `GET`
+- **URL:** `http://localhost:8080/api/books/{id}`
+
+**Example URL:**
+```http
+http://localhost:8080/api/books/1
+```
+
+**Expected Response:**
+```json
+{
+  "id": 1,
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "publicationYear": 1925,
+  "rating": 4.5,
+  "ratingCount": 10,
+  "ratingPoints": 45
+}
+```
+
+---
+
+### 3. **Add a New Book**
+
+**Request:**
+- **Method:** `POST`
+- **URL:** `http://localhost:8080/api/books`
+- **Body:** (Raw, JSON)
+
+**Example Body:**
+```json
+{
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publicationYear": 1951
+}
+```
+
+**Expected Response:**
+```json
+{
+  "id": 2,
+  "title": "The Catcher in the Rye",
+  "author": "J.D. Salinger",
+  "publicationYear": 1951,
+  "rating": 0.0,
+  "ratingCount": 0,
+  "ratingPoints": 0
+}
+```
+
+---
+
+### 4. **Rate a Book**
+
+**Request:**
+- **Method:** `PUT`
+- **URL:** `http://localhost:8080/api/books/{id}/rate`
+- **Query Parameter:** `ratingPointsToAdd` (integer between 1 and 5)
+
+**Example URL:**
+```http
+http://localhost:8080/api/books/1/rate?ratingPointsToAdd=5
+```
+
+**Expected Response:**
+```json
+{
+  "id": 1,
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "publicationYear": 1925,
+  "rating": 5.00,
+  "ratingCount": 1,
+  "ratingPoints": 5
+}
+```
+
+---
+
+### 5. **Delete a Book**
+
+**Request:**
+- **Method:** `DELETE`
+- **URL:** `http://localhost:8080/api/books/{id}`
+
+**Example URL:**
+```http
+http://localhost:8080/api/books/1
+```
+
+**Expected Response:**
+```http
+204 No Content
+```
+
+---
