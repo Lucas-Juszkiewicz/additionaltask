@@ -5,10 +5,10 @@ The application is containerized using Docker.
 
 Features
 # Retrieve a list of books.
-#Filter books by title, year, author, and rating.
-#Rate books (1-5 stars).
-#Mock data is stored in an embedded H2 database.
-#Containerized with Docker.
+# Filter books by title, year, author, and rating.
+# Rate books (1-5 stars).
+# Mock data is stored in an embedded H2 database.
+# Containerized with Docker.
 
 Technologies
 Java: OpenJDK 21
@@ -22,7 +22,6 @@ Prerequisites
 To run this project locally, ensure you have the following installed:
 
 Java: JDK 21 or newer
-Maven: For building the Spring Boot application
 Docker: For containerizing and running the application
 
 Here’s an updated, easy-to-copy version of the README:
