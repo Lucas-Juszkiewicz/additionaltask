@@ -20,11 +20,8 @@ Docker: For containerization.
 
 Prerequisites
 To run this project locally, ensure you have the following installed:
-
 Java: JDK 21 or newer
 Docker: For containerizing and running the application
-
-Here’s an updated, easy-to-copy version of the README:
 
 ---
 
@@ -36,8 +33,7 @@ Here’s an updated, easy-to-copy version of the README:
   ```
 - **Run with Docker**:
   ```bash
-  docker build -t additionaltask .
-  docker run -p 8080:8080 additionaltask
+  docker-compose up -d
   ```
 
 ---
