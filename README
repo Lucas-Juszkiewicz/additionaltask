@@ -35,7 +35,7 @@ Docker: For containerizing and running the application
   ```bash
   docker-compose up -d
   ```
-
+The application runs on localhost:8080
 ---
 
 
